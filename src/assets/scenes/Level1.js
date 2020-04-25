@@ -25,8 +25,12 @@ export default class Level1 extends Phaser.Scene {
 		const background = map.createStaticLayer("background", tileset, 0, 0);
 		const terrain = map.createStaticLayer("terrain", tileset, 0, 0);
 
+		terrain.setCollisionByProperty({collides: true});
+
 		this.dude = this.physics.add.sprite(100, 100, "dude", 4);
 		this.dude.setCollideWorldBounds(true);
+
+		this.physics.add.collider(this.dude, terrain);
 
 		this.anims.create({
 			key: "dude_walk_left",
